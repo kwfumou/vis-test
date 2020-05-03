@@ -23,8 +23,8 @@
     <div id="mynetwork"></div>
 
     <form id="form1" action="#">
-      <input type="text" id="input_node" value="" />
-      <input type="button" onclick="func1()" value="Node" />
+      <input type="number" id="input_node" value="" />
+      <input type="button" onclick="createNode()" value="Node" />
       <input type="text" id="input_edge" value="" />
       <input type="button" onclick="func2()" value="Edge" />
       <input type="text" id="input_message" value="" />
@@ -35,21 +35,22 @@
 
     <script type="text/javascript">
       // create an array with nodes
+      var a = 1;
       var nodes = new vis.DataSet([
-        { id: 1, label: "Node 1" },
-        { id: 2, label: "Node 2" },
-        { id: 3, label: "Node 3" },
-        { id: 4, label: "Node 4" },
-        { id: 5, label: "Node 5" },
+        { id: a + 10, label: "Node " + String(a + 10) },
+        { id: 12, label: "Node 12" },
+        { id: 13, label: "Node 13" },
+        { id: 14, label: "Node 14" },
+        { id: 15, label: "Node 15" },
       ]);
 
       // create an array with edges
       var edges = new vis.DataSet([
-        { from: 1, to: 3 },
-        { from: 1, to: 2 },
-        { from: 2, to: 4 },
-        { from: 2, to: 5 },
-        { from: 3, to: 3 },
+        { from: 11, to: 13 },
+        { from: 11, to: 12 },
+        { from: 12, to: 14 },
+        { from: 12, to: 15 },
+        { from: 13, to: 13 },
       ]);
 
       // create a network
@@ -59,17 +60,20 @@
         edges: edges,
       };
       var options = {};
+
       var network = new vis.Network(container, data, options);
 
-      function func1() {
-        var input_message = document.getElementById("input_node").value;
-        input_message = "点の数は" + input_message + "です。";
-        document.getElementById("output_node").innerHTML = input_message;
-      }
       function func2() {
         var input_message = document.getElementById("input_edge").value;
         input_message = "辺の数は" + input_message + "です。";
         document.getElementById("output_edge").innerHTML = input_message;
+      }
+      function createNode() {
+        let numberNode = document.getElementById("input_node").value;
+        for (let i = 1; i <= numberNode; i++) {
+          nodes.update({ id: i, label: "Node " + String(i) });
+        }
+        network = new vis.Network(container, data, options);
       }
     </script>
   </body>
