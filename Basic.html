@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
+    <meta charset="UTF-8" />
     <title>Network | Basic usage</title>
 
     <script type="text/javascript" src="./dist/vis.js"></script>
@@ -20,6 +21,17 @@
     </p>
 
     <div id="mynetwork"></div>
+
+    <form id="form1" action="#">
+      <input type="text" id="input_node" value="" />
+      <input type="button" onclick="func1()" value="Node" />
+      <input type="text" id="input_edge" value="" />
+      <input type="button" onclick="func2()" value="Edge" />
+      <input type="text" id="input_message" value="" />
+      <input type="button" onclick="func1()" value="辺" />
+    </form>
+    <div id="output_node"></div>
+    <div id="output_edge"></div>
 
     <script type="text/javascript">
       // create an array with nodes
@@ -48,6 +60,17 @@
       };
       var options = {};
       var network = new vis.Network(container, data, options);
+
+      function func1() {
+        var input_message = document.getElementById("input_node").value;
+        input_message = "点の数は" + input_message + "です。";
+        document.getElementById("output_node").innerHTML = input_message;
+      }
+      function func2() {
+        var input_message = document.getElementById("input_edge").value;
+        input_message = "辺の数は" + input_message + "です。";
+        document.getElementById("output_edge").innerHTML = input_message;
+      }
     </script>
   </body>
 </html>
